@@ -1,9 +1,0 @@
-{
-  "name": "jest-examples",
-  "version": "1.0.0",
-  "description": "Examples of Jest patterns",
-  "main": "index.js",
-  "repository": "https://github.com/jamietre/jest-examples",
-  "author": "Jamie Treworgy <jamietre@gmail.com>",
-  "license": "MIT"
-}
