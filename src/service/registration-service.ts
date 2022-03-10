@@ -1,13 +1,9 @@
 import { injectable } from "tsyringe";
 import { CarRegistration, RegistrationStore } from "../db/registration-store";
-import { GuidFactory } from "../util/guid-factory";
 
 @injectable()
 export class RegistrationService {
-  constructor(
-    private registrationStore: RegistrationStore,
-    private guidFactory: GuidFactory
-  ) {}
+  constructor(private registrationStore: RegistrationStore) {}
   async registerCar(options: {
     vin: string;
     owner: string;

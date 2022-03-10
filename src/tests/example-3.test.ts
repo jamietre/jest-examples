@@ -11,7 +11,6 @@ describe("RegistrationService", () => {
   const container = getTestContainer();
 
   const mockRegistrationStore: Partial<jest.Mocked<RegistrationStore>> = {
-    get: jest.fn(),
     put: jest.fn(),
   };
 
