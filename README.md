@@ -24,4 +24,4 @@ Each of the "example-{n}" tests are meant to be cumulative, building/improving o
 
 ## Limitations
 
-This repo was put together for a presenation, and hasn't gone through a lot of refinement or review! Please contribute!
+This repo was put together for a presentation, and hasn't gone through a lot of refinement or review! Please contribute!
