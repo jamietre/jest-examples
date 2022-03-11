@@ -1,9 +1,9 @@
-import { singleton } from "tsyringe";
+import { inject, injectable, singleton } from "tsyringe";
 import { BadRequestError } from "../server/errors/bad-request-error";
 import { GuidFactory } from "../util/guid-factory";
 import { CarRegistration, RegistrationStore } from "./registration-store";
 
-@singleton()
+@injectable()
 export class RegistrationStoreMemory
   implements Partial<Required<RegistrationStore>>
 {
@@ -30,5 +30,12 @@ export class RegistrationStoreMemory
       (e) => e.vin === vin
     );
     return matches.length ? matches[0] : undefined;
+  }
+
+  /**
+   * This method is only available on the memory store
+   */
+  clear() {
+    this.store.clear();
   }
 }

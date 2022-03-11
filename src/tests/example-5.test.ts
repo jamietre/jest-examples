@@ -1,16 +1,24 @@
 import { RegistrationStore } from "../db/registration-store";
 import { RegistrationStoreMemory } from "../db/registration-store.memory";
 import { RegistrationService } from "../service/registration-service";
-import { getTestContainer } from "../test/di-setup-test";
+import { getTestContainer } from "./di-setup-test";
 import { FirstArg } from "../util/type-helpers";
+import { Lifecycle } from "tsyringe";
 
 /**
  * Example 5: Use an implementation instead of a mock
- * Shortcomings: Not evaluating a known value for ID. A bug could make this still pass.
+ * Benefits: We don't rely on assumptions using mock responses from a functional
+ *   dependency
+ * Shortcomings: Not evaluating a known value for ID returned by the
+ *   service. A bug could make this still pass.
  */
 
 describe("RegistrationService", () => {
   const container = getTestContainer();
+
+  // Note that this will register the store in a transient scope, which means that each
+  // resolution will be a new instance! This is useful for unit tests, because the
+  // state will be reset for each test.
   container.registerType(RegistrationStore, RegistrationStoreMemory);
 
   it("can register a car", async () => {

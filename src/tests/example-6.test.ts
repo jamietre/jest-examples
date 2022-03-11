@@ -1,9 +1,8 @@
-import { RegistrationStore } from "../db/registration-store";
-import { RegistrationStoreMemory } from "../db/registration-store.memory";
 import { RegistrationService } from "../service/registration-service";
-import { getTestContainer } from "../test/di-setup-test";
+import { getTestContainer, useMemoryStore } from "./di-setup-test";
 import { GuidFactory } from "../util/guid-factory";
 import { FirstArg } from "../util/type-helpers";
+import { Lifecycle } from "tsyringe";
 
 /**
  * Example 6: Mock things that are dynamic (getting a GUID)
@@ -13,12 +12,16 @@ import { FirstArg } from "../util/type-helpers";
 
 describe("RegistrationService", () => {
   const container = getTestContainer();
+
   const testGuid = "12345678-1000-1000-8000-111111111111";
   const guidFactory: jest.Mocked<GuidFactory> = {
     getGuid: jest.fn().mockReturnValue(testGuid),
   };
-  container.registerType(RegistrationStore, RegistrationStoreMemory);
   container.registerInstance(GuidFactory, guidFactory);
+
+  // This is the same code as Test 5 that uses the memory store, just extracted
+  // to a common place to be more DRY
+  useMemoryStore(container);
 
   it("can register a car", async () => {
     const service = container.resolve(RegistrationService);

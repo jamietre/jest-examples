@@ -1,6 +1,6 @@
 import { RegistrationStore } from "../db/registration-store";
 import { RegistrationService } from "../service/registration-service";
-import { getTestContainer } from "../test/di-setup-test";
+import { getTestContainer } from "./di-setup-test";
 
 /**
  * Example 3: Test uses partial mock dependency.
